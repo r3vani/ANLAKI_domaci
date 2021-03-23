@@ -10,6 +10,8 @@ app.use(express.json());
 //Povezivanje sa bazom
 poveziBazu();
 
+app.use(express.static("front"));
+
 app.listen(port, () => {
     console.log(`Server slusa na portu ${port}.`);
 });

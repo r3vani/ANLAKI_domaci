@@ -20,32 +20,34 @@
                     <hr>
 
                     <label><b>Korisnicko Ime</b></label>
-                    <input type="text" placeholder="Unesite Korisnicko Ime">
+                    <input type="text" placeholder="Unesite Korisnicko Ime" id="Username" required>
 
                     <label for="email"><b>Email</b></label>
-                    <input type="text" placeholder="Unesite Email">
+                    <input type="text" placeholder="Unesite Email" id="Email" required>
 
                     <label for="name"><b>Ime</b></label>
-                    <input type="text" placeholder="Unesite vase Ime">
+                    <input type="text" placeholder="Unesite vase Ime" id="Ime" required>
 
                     <label for="surname"><b>Prezime</b></label>
-                    <input type="text" placeholder="Unesite vase Prezime">
+                    <input type="text" placeholder="Unesite vase Prezime" id="Prezime" required>
 
                     <hr>
 
                         <label><b>Sifra</b></label>
-                        <input type="text" placeholder="Unestite Sifru">
+                        <input type="password" placeholder="Unestite Sifru" id="Password" required>
 
                         <label><b>Ponavljanje Sifre</b></label>
-                        <input type="text" placeholder="Ponovo unestite Sifru">
+                        <input type="password" placeholder="Ponovo unestite Sifru" id="RPassword" required>
                     <hr>
-                <button class="registerbtn">Registruj Se</button>
+                <button class="registerbtn" onclick="registracija()">Registruj Se</button>
             </div>
   
             <div class="signin">
                 <p>Vec imate nalog? <a href="./login.html">Ulogujte se</a>.</p>
             </div>
         </form>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="index.js"></script>
 
     </body>
 </html>

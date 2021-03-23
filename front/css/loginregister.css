@@ -96,3 +96,9 @@ body {
     align-items: center;
   }
 
+#errorMessage
+{
+  color:red;
+  display:none;
+  font-weight: bold;
+}

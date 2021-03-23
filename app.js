@@ -10,8 +10,6 @@ app.use(express.json());
 //Povezivanje sa bazom
 poveziBazu();
 
-app.use(express.static("front"));
-
 app.listen(port, () => {
     console.log(`Server slusa na portu ${port}.`);
 });
@@ -22,6 +20,7 @@ app.get("/api/svinalozi", async (req,res) => {
     {
         const sviNalozi = await account.find();
         res.json(sviNalozi);
+        console.log(sviNalozi.length);
     }
     catch (err) 
     {
@@ -33,10 +32,6 @@ app.get("/api/svinalozi", async (req,res) => {
 app.post("/api/register", async (req, res) => {
     try 
     {
-        let takenMail = false;
-        let takenUsername = false;
-        let sadrzi = true;
-
         const username = req.body.username;
         const password = req.body.password;
         const email = req.body.email;
@@ -44,27 +39,17 @@ app.post("/api/register", async (req, res) => {
         const prezime = req.body.ime;
 
         const sviNalozi = await account.find();
-        sviNalozi.forEach((nalog) => {
-            if(nalog.username == username) takenUsername = true;
-            if(nalog.email == email) takenMail = true;
-            if(!email.includes('@')) sadrzi = false;
-        });
 
-        if(takenUsername) console.log("Korisnicko ime je vec zauzeto.");
-        else if(takenMail) console.log("E-Mail je vec zauzet.");
-        else if(!sadrzi) console.log("E-Mail mora sadrzati @!");
-        else 
-        {
-            const noviAccount = new account({
-                email: email,
-                username: username,
-                password: password,
-                ime: ime,
-                prezime: prezime,
-            });
-            const napravljenAccount = await noviAccount.save();
-            res.json(napravljenAccount);
-        }
+        const noviAccount = new account({
+            email: email,
+            username: username,
+            password: password,
+            ime: ime,
+            prezime: prezime,
+        });
+        const napravljenAccount = await noviAccount.save();
+        res.json(napravljenAccount);
+
     }
     catch (err) 
     {
@@ -86,3 +71,5 @@ app.delete("/api/delete/:id", async (req, res) => {
         console.log(err.message);
     }
 })
+
+app.use(express.static("front"));

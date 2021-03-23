@@ -19,35 +19,35 @@
                 <p>Popunite formu da biste kreirali nalog.</p>
                     <hr>
 
-                    <label><b>Korisnicko Ime</b></label>
-                    <input type="text" placeholder="Unesite Korisnicko Ime" id="Username" required>
+                    <label><b>Korisničko Ime</b></label>
+                    <input type="text" placeholder="Unesite Korisničko Ime" id="Username" required>
 
                     <label for="email"><b>Email</b></label>
                     <input type="text" placeholder="Unesite Email" id="Email" required>
 
                     <label for="name"><b>Ime</b></label>
-                    <input type="text" placeholder="Unesite vase Ime" id="Ime" required>
+                    <input type="text" placeholder="Unesite vaše Ime" id="Ime" required>
 
                     <label for="surname"><b>Prezime</b></label>
-                    <input type="text" placeholder="Unesite vase Prezime" id="Prezime" required>
+                    <input type="text" placeholder="Unesite vaše Prezime" id="Prezime" required>
 
                     <hr>
 
-                        <label><b>Sifra</b></label>
-                        <input type="password" placeholder="Unestite Sifru" id="Password" required>
+                        <label><b>Šifra</b></label>
+                        <input type="password" placeholder="Unestite Šifru" id="Password" required>
 
-                        <label><b>Ponavljanje Sifre</b></label>
-                        <input type="password" placeholder="Ponovo unestite Sifru" id="RPassword" required>
+                        <label><b>Potvrdi šifru</b></label>
+                        <input type="password" placeholder="Ponovo unestite Šifru" id="RPassword" required>
                     <hr>
-                <button class="registerbtn" onclick="registracija()">Registruj Se</button>
+                    <label id="errorMessage"><b>Error</b></label>
+                <button type="button" class="registerbtn" onclick="registracija()">Registrujte se</button>
+                <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+                <script src="index.js"></script>
             </div>
   
             <div class="signin">
                 <p>Vec imate nalog? <a href="./login.html">Ulogujte se</a>.</p>
             </div>
         </form>
-        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-        <script src="index.js"></script>
-
     </body>
 </html>

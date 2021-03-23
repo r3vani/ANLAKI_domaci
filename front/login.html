@@ -10,28 +10,30 @@
     </head>
     <body>
         <div class="navigation">
-            <a class="sign" href="./register.html">Napravite Nalog</a>
+            <a class="sign" href="./register.html">Napravite nalog</a>
             <a class="blue" href="#">Ulogujte se</a>
         </div>
 
         <form action="" class="form-control">
             <div class="container">
-                <h1>Uloguj Se</h1>
+                <h1>Uloguj se</h1>
                 <hr>
-                    <label><b>Email/Korisnicko Ime</b></label>
-                    <input type="text" placeholder="Unesite Email/Korisnicko Ime">
+                    <label><b>E-Mail / Korisničko ime</b></label>
+                    <input type="text" placeholder="Unesite E-Mail / Korisničko ime" id="usernameInput">
 
-                    <label><b>Sifra</b></label>
-                    <input type="password" placeholder="Unesite Sifru">
+                    <label><b>Šifra</b></label>
+                    <input type="password" placeholder="Unesite šifru" id="passwordInput">
 
                 <hr>
-                <button class="registerbtn">Ulogujte Se</button>
+                <label id="errorMessage"><b>Error</b></label>
+                <button class="registerbtn" type="button" onclick="loginovanje()">Ulogujte se</button>
             </div>
   
             <div class="signin">
                 <p>Nemate nalog? <a href="./register.html">Napravite novi</a>.</p>
             </div>
+            <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+            <script src="index.js"></script>
         </form>
-
     </body>
 </html>

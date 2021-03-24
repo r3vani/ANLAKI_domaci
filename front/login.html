@@ -2,36 +2,66 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="css/loginregister.css">
-        <link rel="stylesheet" href="css/navigation.css">
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Document</title>
+        <link rel="stylesheet" href="./font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/loginregister.css">
+        <link rel="stylesheet" href="css/nav.css">
+        <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
-        <div class="navigation">
-            <a class="sign" href="./register.html">Napravite nalog</a>
-            <a class="blue" href="#">Ulogujte se</a>
-        </div>
+        <!--Navigation-->
 
-        <form action="" class="form-control">
-            <div class="container">
-                <h1>Uloguj se</h1>
+        <nav class="nav-a">
+            <div class="nav-top" id="nav-top-id">
+                <a href="index.html" class="blue">Početna strana</a>
+
+                <a href="./register.html" class="login-button" >Napravite nalog</a>
+                <a class="login-button" href="#" >Ulogujte se</a>
+
+                <a class="nav-right" href="./accountPage.html"><i class="fa fa-user-circle" aria-hidden="true"></i><span id="onLoggedIn">Nalog</span></a>
+                <a href="javascript:void(0);" class="icon" onclick="expandMenu()">
+                    <i class="fa fa-bars" aria-hidden="true"></i>
+                </a>
+            </div>
+
+        </nav>
+
+        <script>
+            function expandMenu() {
+              var element = document.getElementById("nav-top-id");
+              if (element.className === "nav-top") { element.className += " responsive"; }
+              else { element.className = "nav-top"; }
+            }
+        </script>
+
+        <!--!Navigation-->
+
+        <form class="form-control">
+
+            <div class="container-control">
+
+                <h1>Ulogujte se</h1>
+
                 <hr>
-                    <label><b>E-Mail / Korisničko ime</b></label>
-                    <input type="text" placeholder="Unesite E-Mail / Korisničko ime" id="usernameInput">
 
-                    <label><b>Šifra</b></label>
-                    <input type="password" placeholder="Unesite šifru" id="passwordInput">
+                <label>E-Mail / Korisničko ime</label>
+                <input type="text" placeholder="Unesite E-Mail / Korisničko ime" id="usernameInput">
+                <label>Šifra</label>
+                <input type="password" placeholder="Unesite šifru" id="passwordInput">
 
                 <hr>
-                <label id="errorMessage"><b>Error</b></label>
-                <button class="registerbtn" type="button" onclick="loginovanje()">Ulogujte se</button>
+
+                <label id="errorMessage">Error</label>
+                <button class="submit-button" type="button" onclick="loginovanje()">Ulogujte se</button>
+
             </div>
   
-            <div class="signin">
+            <div class="page-switch">
                 <p>Nemate nalog? <a href="./register.html">Napravite novi</a>.</p>
             </div>
+
             <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
             <script src="index.js"></script>
         </form>

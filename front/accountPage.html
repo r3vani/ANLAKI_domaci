@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test</title>
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="./font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/accountPage.css">
+    <link rel="stylesheet" href="css/loginregister.css">
+</head>
+<body>
+    <!--Navigation-->
+
+    <nav class="nav-a">
+        <div class="nav-top" id="nav-top-id">
+            <a href="index.html" class="blue">Početna strana</a>
+
+            <a href="./register.html" class="login-button" >Napravite nalog</a>
+            <a class="login-button" href="./login.html" >Ulogujte se</a>
+
+            <a class="nav-right" href="./accountPage.html"><i class="fa fa-user-circle" aria-hidden="true"></i><span id="onLoggedIn">Nalog</span></a>
+            <a href="javascript:void(0);" class="icon" onclick="expandMenu()">
+                <i class="fa fa-bars" aria-hidden="true"></i>
+            </a>
+        </div>
+
+    </nav>
+
+    <script>
+        function expandMenu() {
+          var element = document.getElementById("nav-top-id");
+          if (element.className === "nav-top") { element.className += " responsive"; }
+          else { element.className = "nav-top"; }
+        }
+    </script>
+
+    <!--!Navigation-->
+
+    <!--Account info part-->
+    <section class="full-control">
+        <div class="accountCardContainer"  id="accoutTable-inv">
+            <h2>Podaci o nalogu:</h2>
+            <table class="accountTable">
+                <tr>
+                    <td colspan="2"><hr></td>
+                </tr>
+                <tr>
+                    <td class="detail">Korisničko ime:</td>
+                    <td class="content">Nije pronadjeno.</td>
+                </tr>
+                <tr>
+                    <td class="detail">E-mail:</td>
+                    <td class="content">Nije pronadjeno.</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><hr></td>
+                </tr>
+                <tr>
+                    <td class="detail">Ime:</td>
+                    <td class="content">Nije pronadjeno.</td>
+                </tr>
+                <tr>
+                    <td class="detail">Prezime:</td>
+                    <td class="content">Nije pronadjeno.</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><hr></td>
+                </tr>
+            </table>
+            <button class="submit-button" onclick="editAccount()">Izmeni</button>
+        </div>
+
+        <form class="form-control">
+            <div class="container-control" id="editing2-id">
+                <div class="editing" id="editing-id">
+                    <h1>Promeni podatke o nalogu:</h1>
+
+                    <hr>
+
+                    <label id= >Korisničko Ime</label>
+                    <input type="text" placeholder="Promenite korisničko ime" id="Username">
+                    <label for="email">Email</label>
+                    <input type="text" placeholder="Promenite email" id="Email">
+                    <label for="name">Ime</label>
+                    <input type="text" placeholder="Promenite vaše ime" id="Ime">
+                    <label for="surname">Prezime</label>
+                    <input type="text" placeholder="Promenite vaše prezime" id="Prezime">
+
+                    <hr>
+
+                    <label>Stara šifra</label>
+                    <input type="password" placeholder="Promenite šifru" id="Password">
+                    <label>Nova šifru</label>
+                    <input type="password" placeholder="Nova šifru" id="RPassword">
+                    
+
+                    <hr>   
+                    <button type="button" class="submit-button">Izmeni</button>
+                </div>
+            </div>
+        </form>
+
+        <script>
+            function editAccount() {
+                var element = document.getElementById("editing-id");
+                if (element.className === "editing") 
+                { 
+                    document.getElementById("editing2-id").className += " inv";
+                    document.getElementById("accoutTable-inv").className += " inv";
+                }
+                else { element.className = "editing"; }
+            }
+        </script>
+
+    </section>
+    <!--!Account info part-->
+    <section class="full-control">
+
+    </section>
+
+</body>
+</html>

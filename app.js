@@ -20,7 +20,6 @@ app.get("/api/svinalozi", async (req,res) => {
     {
         const sviNalozi = await account.find();
         res.json(sviNalozi);
-        console.log(sviNalozi.length);
     }
     catch (err) 
     {

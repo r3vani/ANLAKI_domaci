@@ -1,0 +1,66 @@
+.full-control{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+}
+
+.accountCardContainer {
+    background-color: white;
+    text-align:center;
+    max-width: 400px;
+    min-width: 350px;
+    margin: 60px 0 10px 0;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+hr{
+    border: 0px;
+    border-top: 1px solid #ccc;
+    margin: 10px 0 10px 0;
+}
+
+.content{
+    font-weight: bold;
+}
+
+h2 {
+    text-align: center;
+    margin: 10px;
+}
+
+.accountTable{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+}
+
+.submit-button {
+    background-color: #1452d8;
+    color: white;
+    padding: 16px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 50%;
+    border-radius: 5px;
+    opacity: 0.85;
+}
+
+.submit-button:hover{
+    opacity: 1;
+}
+
+.container-control{
+    display: none;
+}
+
+.container-control.inv{
+    display:block;
+}
+
+.accountCardContainer.inv{
+    display:none;
+}

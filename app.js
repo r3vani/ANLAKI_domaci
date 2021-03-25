@@ -27,6 +27,19 @@ app.get("/api/svinalozi", async (req,res) => {
     }
 });
 
+app.put("/api/update/:id", async (req, res) => {
+    try 
+    {
+        const id = req.params.id;
+        let promenjenNalog = await account.findByIdAndUpdate(id, req.body);
+        res.json(req.body);
+    }
+    catch (err) 
+    {
+        console.log(err.message);
+    }
+});
+
 //Registrovanje novog naloga
 app.post("/api/register", async (req, res) => {
     try 
@@ -35,7 +48,7 @@ app.post("/api/register", async (req, res) => {
         const password = req.body.password;
         const email = req.body.email;
         const ime = req.body.ime;
-        const prezime = req.body.ime;
+        const prezime = req.body.prezime;
 
         const sviNalozi = await account.find();
 

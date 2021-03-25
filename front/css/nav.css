@@ -56,28 +56,13 @@
     display: none;
 }
   
-/* kada nije loginovan */
-.nav-a a.login-button{
-    float: right;
-    display: block;
-}
-  
-/* kada nije loginovan */
-.nav-a a.nav-right{
-    display:none;
-}
-  
-  
 @media screen and (max-width: 600px) {
   .nav-top a:not(:first-child) {display: none;}
   .nav-top a.icon {
     float: right;
     display: block;
   }
-  .nav a.login-button{
-    float: right;
-    display: none;
-  }
+
 }
   
 @media screen and (max-width: 600px) {
@@ -87,31 +72,18 @@
     right: 0;
     top: 0;
   }
+
   .nav-top.responsive a {
     float: none;
     display: block;
     text-align: left;
   }
-  /* kada nije loginovan */
-  .nav-a a.nav-right{
-    display:none;
-  }
-  /* kada je loginovan */
-  /*.nav-a a.login-button{
-    float: right;
-    display: none;
-  }*/
+
   .nav-top #onLoggedIn {
     margin-left: 3px;
     display: inline-block;
   }
 }
-  
-/* kada je loginovan  */
-/*.nav-a a.login-button{
-  float: right;
-  display: none;
-}*/
   
 #onLoggedIn {
   display: none;

@@ -6,6 +6,11 @@ body {
   margin: 0;
 }
 
+#logoutDugme 
+{
+  background-color:rgb(190, 27, 27);  
+}
+
 h2{
   font-weight: bold;
   -webkit-user-select: none;
@@ -66,10 +71,15 @@ h2{
   width:50%;
 }
 
-button.submit-button.hidden{
+.submit-button.hidden{
   display:none;
 }
 
 #eventCreation-id{
   float : left
+}
+
+#deleteButton 
+{
+  background-color: rgb(190, 27, 27);
 }

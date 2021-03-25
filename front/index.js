@@ -1,3 +1,17 @@
+async function proveriDesavanja() 
+{
+    let svaDesavanjaData = await axios.get("/api/svadesavanja");
+    let svaDesavanja = svaDesavanjaData.data;
+    svaDesavanja.forEach(async (desavanje) => {
+        let datumDesavanja = new Date(desavanje.vreme);
+        let danasnjeVreme = new Date();
+        if(datumDesavanja.getTime() <= danasnjeVreme.getTime()) 
+        {
+            await axios.delete(`/api/obrisi/${desavanje._id}`);
+        }
+    });
+}
+
 async function mainStranicaLoad() 
 {
     glavnaStranicaLoad();
@@ -41,11 +55,20 @@ function napraviDesavanja(desavanja)
         </table>
     </div>`
     });
-    desavanjaString += 
-    `<form action="./eventCreation.html">
-        <button class="submit-button" id="newEventButton">Novi dogadjaj</button>
-    </form>`
+    if(localStorage.getItem("LoggedIn")) 
+    {
+        desavanjaString +=
+        `<form action="./eventCreation.html">
+            <button class="submit-button" id="newEventButton">Novi događaj</button>
+        </form>`
+    }
     return desavanjaString;
+}
+
+function izlogujSe() 
+{
+    localStorage.clear();
+    document.location.href = "index.html";
 }
 
 async function kreirajDogadjaj() 
@@ -65,10 +88,10 @@ async function kreirajDogadjaj()
     else if(naziv.value.trim() == "" || datum.value.trim() == "" || mesto.value.trim() == "") prikaziError3("Sva polja moraju biti popunjena!");
     else 
     {
-        if(naziv.length > 20) prikaziError3("Naziv ne sme imati više od 20 karaktera!");
+        if(naziv.value.length > 20) prikaziError3("Naziv ne sme imati više od 20 karaktera!");
         else 
         {
-            if(mesto.length > 20) prikaziError("Zapis mesta ne sme imati više od 20 karaktera!");
+            if(mesto.value.length > 20) prikaziError("Zapis mesta ne sme imati više od 20 karaktera!");
             else 
             {
                 let datumVrednost = new Date(datum.value);
@@ -269,6 +292,7 @@ async function ucitajMojeDogadjaje(svaDesavanja)
 
 async function glavnaStranicaLoad() 
 {
+    proveriDesavanja();
     let postoji = false;
     let sviNaloziData = await axios.get("api/svinalozi");
     let sviNalozi = sviNaloziData.data;
@@ -283,7 +307,7 @@ async function glavnaStranicaLoad()
     else 
     {
         document.getElementById("accountButton-id").className += " hidden";
-        if(document.location.href == "index.html") document.getElementById("newEventButton").className += " hidden";
+        if(document.location == "index.html") document.getElementById("newEventButton").className += " hidden";
     }
 }
 
@@ -354,6 +378,7 @@ async function registracija()
                                     }
                                     let napravljenAccountData = await axios.post("/api/register", noviAccount);
                                     let napravljenAccount = napravljenAccountData.data;
+                                    localStorage.setItem("LoggedIn", true);
                                     localStorage.setItem("ID", napravljenAccount._id)
                                     document.location.href = "index.html";
                                 }
@@ -380,6 +405,7 @@ async function loginovanje()
             if(nalog.password == password) 
             {
                 localStorage.setItem("ID", nalog._id);
+                localStorage.setItem("LoggedIn", true);
                 document.getElementById("errorMessage").style.display = "none";
                 document.location.href = "index.html";
             }

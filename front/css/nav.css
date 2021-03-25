@@ -112,3 +112,7 @@ a.nav-right.hidden {
 #onLoggedIn {
   display: none;
 }
+
+#eventCreation-id{
+  float : left
+}

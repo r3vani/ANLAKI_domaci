@@ -127,6 +127,8 @@ async function glavnaStranicaLoad()
     else 
     {
         document.getElementById("accountButton-id").className += " hidden";
+        document.getElementById("newEventButton").className += " hidden";
+        document.getElementById("eventCreation-id").className += " hidden";
     }
     console.log(1);
 }

@@ -61,3 +61,11 @@ h2{
 #deleteButton{
   width:50%;
 }
+
+button.submit-button.hidden{
+  display:none;
+}
+
+#eventCreation-id{
+  float : left
+}

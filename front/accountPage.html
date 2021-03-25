@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>test</title>
+        <title>Nalog</title>
         <link rel="stylesheet" href="css/nav.css">
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="./font-awesome/css/font-awesome.min.css">
@@ -18,10 +18,11 @@
             <div class="nav-top" id="nav-top-id">
                 <a href="index.html" class="blue">Početna strana</a>
 
-                <a href="./register.html" class="login-button" >Napravite nalog</a>
-                <a class="login-button" href="./login.html" >Ulogujte se</a>
+                <a href="./register.html" class="login-button" id="createAcc-id">Napravite nalog</a>
+                <a class="login-button" href="./login.html" id="logAcc-id">Ulogujte se</a>
 
-                <a class="nav-right" href="./accountPage.html"><i class="fa fa-user-circle" aria-hidden="true"></i><span id="onLoggedIn">Nalog</span></a>
+                <a class="nav-right" href="./accountPage.html" id="accountButton-id"><i class="fa fa-user-circle" aria-hidden="true"></i><span id="onLoggedIn">Nalog</span></a>
+
                 <a href="javascript:void(0);" class="icon" onclick="expandMenu()">
                     <i class="fa fa-bars" aria-hidden="true"></i>
                 </a>
@@ -39,8 +40,11 @@
 
         <!--!Navigation-->
 
-        <!--Account info part-->
-        <section class="full-control">
+        <div class="main-wrap">
+
+            <!--Account info part-->
+
+            <section class="full-control">
             <div class="accountCardContainer"  id="accoutTable-inv">
                 <h2>Podaci o nalogu:</h2>
                 <table class="accountTable">
@@ -72,54 +76,101 @@
                 </table>
                 <button class="submit-button" onclick="editAccount()">Izmeni</button>
             </div>
+            </section>
 
-            <form class="form-control">
-                <div class="container-control" id="editing2-id">
-                    <div class="editing" id="editing-id">
-                        <h1>Promeni podatke o nalogu:</h1>
-                        <label type="text" id="errorMessage2">Error</label>
-                        <hr>
+            <!--My created events-->
 
-                        <label id= >Korisničko Ime</label>
-                        <input type="text" placeholder="Promenite korisničko ime" id="Username">
-                        <label for="email">Email</label>
-                        <input type="text" placeholder="Promenite email" id="Email">
-                        <label for="name">Ime</label>
-                        <input type="text" placeholder="Promenite vaše ime" id="Ime">
-                        <label for="surname">Prezime</label>
-                        <input type="text" placeholder="Promenite vaše prezime" id="Prezime">
+            <section class="full-control" id="full-control-hide">
+                <div class="accountCardContainer">
+                    <h2>Moji dogadjaji:</h2>
 
-                        <hr>
+                    <!--Event Template-->
 
-                        <label>Stara šifra</label>
-                        <input type="password" placeholder="Promenite šifru" id="Password">
-                        <label>Nova šifra</label>
-                        <input type="password" placeholder="Nova šifra" id="RPassword">
+                    <div class="eventCardContainer">
+                        <table class="eventTable">
+                            <tr>
+                                <td class="eventTablecell" colspan="2" id="eventTableEventName">01234567890123456789</td>
+                                <!--Ovaj naziv gore samo zameni sa nazivo eventa iz baze-->
+                                <!--Maximum za naziv eventa po duzini je 20 karaktera-->
+                            </tr>
+                            <tr>
+                                <td class="eventTablecell">Datum:</td>
+                                <td class="eventTablecell2" id="changeDate">1.1.1970.</td>
+                            </tr>
+                         <tr>
+                                <td class="eventTablecell">Mesto:</td>
+                                <td class="eventTablecell2" id="changePlace">Mesto nije pronadjeno.</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    
+                    
+                </div>
+            </section>
+
+            <!--!My created events-->
+
+        </div>
+
+
+        <!--Edit account form-->
+
+        <form class="form-control">
+            <div class="container-control" id="editing2-id">
+                <div class="editing" id="editing-id">
+                    <h1>Promeni podatke o nalogu:</h1>
+                    <label type="text" id="errorMessage2">Error</label>
+                    <hr>
+
+                    <label id= >Korisničko Ime</label>
+                    <input type="text" placeholder="Promenite korisničko ime" id="Username">
+                    <label for="email">Email</label>
+                    <input type="text" placeholder="Promenite email" id="Email">
+                    <label for="name">Ime</label>
+                    <input type="text" placeholder="Promenite vaše ime" id="Ime">
+                    <label for="surname">Prezime</label>
+                    <input type="text" placeholder="Promenite vaše prezime" id="Prezime">
+
+                    <hr>
+
+                    <label>Stara šifra</label>
+                    <input type="password" placeholder="Promenite šifru" id="Password">
+                    <label>Nova šifra</label>
+                    <input type="password" placeholder="Nova šifra" id="RPassword">
                         
 
-                        <hr>   
-                        <button type="button" class="submit-button" onclick="promeniPodatke()">Promeni</button>
+                    <hr>
+                    <div class="button-wrapper">
+                        <button type="button" class="submit-button" onClick="history.go(0)" VALUE="Refresh" id="backButton">
+                            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                        </button>
+                            
+                    </div>
+                    <div class="button-wrapper2">
+                        <button type="button" class="submit-button" onclick="promeniPodatke()" id="forwardButton">Promeni</button>
                     </div>
                 </div>
-            </form>
+            </div>
+        </form>
 
-            <script>
-                function editAccount() {
-                    var element = document.getElementById("editing-id");
-                    if (element.className === "editing") 
-                    { 
-                        document.getElementById("editing2-id").className += " inv";
-                        document.getElementById("accoutTable-inv").className += " inv";
-                    }
-                    else { element.className = "editing"; }
+        <!--!Edit account form-->
+
+        <script>
+            function editAccount() {
+                var element = document.getElementById("editing-id");
+                if (element.className === "editing") 
+                { 
+                    document.getElementById("editing2-id").className += " inv";
+                    document.getElementById("accoutTable-inv").className += " inv";
+                    document.getElementById("full-control-hide").className += " inv";
                 }
-            </script>
+                else { element.className = "editing"; }
+            }
+        </script>
 
-        </section>
         <!--!Account info part-->
-        <section class="full-control">
 
-        </section>
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <script src="index.js"></script>
     </body>

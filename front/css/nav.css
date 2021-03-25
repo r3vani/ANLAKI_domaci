@@ -33,36 +33,50 @@
 }
   
 .nav-top {
-    overflow: hidden;
+  overflow: hidden;
 }
   
 .nav-top a {
-    float: left;
-    display: block;
-    color: black;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
+  float: left;
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
 }
   
 .nav-top a:hover {
-    background-color: #ddd;
-    color: black;
+  background-color: #ddd;
+  color: black;
 }
   
 .nav-top .icon {
-    background-color: #f1f1f2;
-    display: none;
+  background-color: #f1f1f2;
+  display: none;
 }
-  
+
+a.login-button {
+  float: right;
+}
+
+/* ovo se sakrije kada si loginovan */
+a.login-button.hidden {
+  display: none;
+}
+
+/*ovo se sakrije kada nisi ulogovan*/
+a.nav-right.hidden {
+  display: none;
+}
+
+
 @media screen and (max-width: 600px) {
   .nav-top a:not(:first-child) {display: none;}
   .nav-top a.icon {
     float: right;
     display: block;
   }
-
 }
   
 @media screen and (max-width: 600px) {
@@ -83,6 +97,16 @@
     margin-left: 3px;
     display: inline-block;
   }
+
+  /* ovo se sakrije kada si loginovan */
+  a.login-button.hidden {
+    display: none;
+  }
+  /*ovo se sakrije kada nisi ulogovan*/
+  a.nav-right.hidden {
+    display: none;
+  }
+
 }
   
 #onLoggedIn {

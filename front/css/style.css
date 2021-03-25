@@ -5,3 +5,59 @@ body {
   background-color: #101010;
   margin: 0;
 }
+
+h2{
+  font-weight: bold;
+}
+
+.eventCardContainer{
+  background-color: #f1f1f2;
+  text-align:center;
+  max-width: 400px;
+  padding: 20px;
+  margin: 20px 0 10px 0;
+  min-height: 100px;
+  border-radius: 10px;
+
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: left;
+}
+
+.eventTable{
+  text-align: right;
+}
+
+.eventTablecell{
+  padding:3px;
+  text-align: right;
+}
+
+.eventTablecell2{
+  text-align: left;
+}
+
+#eventTableEventName{
+  font-weight: bold;
+  font-size: 20px;
+  text-align:left;
+}
+
+#changeDate{
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.linkToEventsPage{
+  text-decoration: none;
+  color: black;
+}
+
+.eventCardContainer:hover{
+  background-color: #e5e5e7;
+}
+
+#deleteButton{
+  width:50%;
+}

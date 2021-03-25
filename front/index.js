@@ -121,12 +121,14 @@ async function glavnaStranicaLoad()
     });
     if(postoji) 
     {
-        //aj du not andrstend jor ci es es instraksns
+        document.getElementById("createAcc-id").className += " hidden";
+        document.getElementById("logAcc-id").className += " hidden";
     }
     else 
     {
-        //aj du not andrstend jor ci es es instraksns
+        document.getElementById("accountButton-id").className += " hidden";
     }
+    console.log(1);
 }
 
 async function registracija() 

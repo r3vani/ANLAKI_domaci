@@ -1,3 +1,126 @@
+async function mainStranicaLoad() 
+{
+    glavnaStranicaLoad();
+    let svaDesavanjaData = await axios.get("/api/svadesavanja");
+    let svaDesavanja = svaDesavanjaData.data;
+    const accounCardConainerID = document.getElementById("accounCardConainerID");
+    accounCardConainerID.innerHTML = napraviDesavanja(svaDesavanja);
+}
+
+async function obrisiDesavanje() 
+{
+    let svaDesavanjaData = await axios.get("/api/svadesavanja");
+    let svaDesavanja = svaDesavanjaData.data;
+    svaDesavanja.forEach(async (desavanje) => {
+        if(desavanje._id == sessionStorage.getItem("eventID")) 
+        {
+            await axios.delete(`/api/obrisi/${desavanje._id}`);
+            document.location.href = "index.html";
+        } 
+    });
+}
+
+function napraviDesavanja(desavanja) 
+{
+    let desavanjaString = "<h2>Događaji</h2>";
+    desavanja.forEach((event) => {
+        desavanjaString += 
+    `<div class="eventCardContainer" id="eventCardContainerID" onclick="otvoriDesavanje('${event._id}')">
+        <table class="eventTable">
+            <tr>
+                <td class="eventTablecell" colspan="2" id="eventTableEventName">${event.naziv}</td>
+            </tr>
+            <tr>
+                <td class="eventTablecell">Datum:</td>
+                <td class="eventTablecell2" id="changeDate">${event.vreme}</td>
+            </tr>
+            <tr>
+                <td class="eventTablecell">Mesto:</td>
+                <td class="eventTablecell2" id="changePlace">${event.mesto}</td>
+            </tr>
+        </table>
+    </div>`
+    });
+    desavanjaString += 
+    `<form action="./eventCreation.html">
+        <button class="submit-button" id="newEventButton">Novi dogadjaj</button>
+    </form>`
+    return desavanjaString;
+}
+
+async function kreirajDogadjaj() 
+{
+    const naziv = document.getElementById("nazivChange");
+    const datum = document.getElementById("vremeChange");
+    const mesto = document.getElementById("mestoChange");
+    const opis = document.getElementById("opisChange");
+
+    let zauzetNaziv = false;
+    let svaDesavanjaData = await axios.get("/api/svadesavanja");
+    let svaDesavanja = svaDesavanjaData.data;
+    svaDesavanja.forEach((event) => {
+        if(event.naziv == naziv) zauzetNaziv = true;
+    });
+    if(zauzetNaziv) prikaziError3("Već postoji događanje sa unetim nazivom!");
+    else if(naziv.value.trim() == "" || datum.value.trim() == "" || mesto.value.trim() == "") prikaziError3("Sva polja moraju biti popunjena!");
+    else 
+    {
+        if(naziv.length > 20) prikaziError3("Naziv ne sme imati više od 20 karaktera!");
+        else 
+        {
+            if(mesto.length > 20) prikaziError("Zapis mesta ne sme imati više od 20 karaktera!");
+            else 
+            {
+                let datumVrednost = new Date(datum.value);
+                let danasnjiDatum = new Date();
+                if(datumVrednost.getTime() < danasnjiDatum.getTime()) prikaziError3("Datum događaja mora biti u budućnosti!");
+                else 
+                {
+                    let novoDesavanje = 
+                    {
+                        naziv: naziv.value,
+                        vreme: datum.value,
+                        mesto: mesto.value,
+                        opis: opis.value,
+                        idKreatora: localStorage.getItem("ID"),
+                    }
+                    await axios.post("/api/novodesavanje", novoDesavanje);
+                    document.location.href = "index.html";
+                }
+            }
+        }
+    }
+}
+
+async function otvoriDesavanje(id) 
+{
+    sessionStorage.setItem("eventID", id);
+    document.location.href = "eventpage.html";
+}
+
+async function eventStranicaLoad() 
+{
+    glavnaStranicaLoad();
+    const id = sessionStorage.getItem("eventID");
+    const naziv = document.getElementById("changeNaziv");
+    const datum = document.getElementById("changeDate");
+    const mesto = document.getElementById("changePlace");
+    const opis = document.getElementById("changeOpis");
+    let trazenoDesavanjeData = await axios.get("/api/svadesavanja");
+    let trazenoDesavanje = trazenoDesavanjeData.data;
+    trazenoDesavanje.forEach((event) => {
+        if(event._id == id) 
+        {
+            naziv.innerHTML = event.naziv;
+            datum.innerHTML = event.vreme;
+            mesto.innerHTML = event.mesto;
+            opis.innerHTML = event.opis;
+            if(event.idKreatora == localStorage.getItem("ID")) document.getElementById("deleteButton").style.display = "inline-block";
+            else document.getElementById("deleteButton").style.display = "none";
+        }
+    });
+}
+
 async function promeniPodatke() 
 {
     let sviNaloziData = await axios.get("/api/svinalozi");
@@ -93,7 +216,10 @@ async function promeniPodatke()
 
 async function nalogPodaci() 
 {
+    let svaDesavanjaData = await axios.get("/api/svadesavanja");
+    let svaDesavanja = svaDesavanjaData.data;
     glavnaStranicaLoad();
+    ucitajMojeDogadjaje(svaDesavanja);
     let sviNaloziData = await axios.get("/api/svinalozi");
     let sviNalozi = sviNaloziData.data;
     sviNalozi.forEach(async (nalog) => {
@@ -109,6 +235,36 @@ async function nalogPodaci()
             document.getElementById("Prezime").value = nalog.prezime;    
         }
     })
+}
+
+async function ucitajMojeDogadjaje(svaDesavanja) 
+{
+    const container = document.getElementById("accountCardContainerID");
+    let mojaDesavanja = `<h2>Moji događaji</h2>`;
+    svaDesavanja.forEach((desavanje) => {
+        if(desavanje.idKreatora == localStorage.getItem("ID")) 
+        {
+            mojaDesavanja += 
+            `
+            <div class="eventCardContainer" onclick="otvoriDesavanje('${desavanje._id}')">
+                <table class="eventTable">
+                    <tr>
+                        <td class="eventTablecell" colspan="2" id="eventTableEventName">${desavanje.naziv}</td>
+                    </tr>
+                    <tr>
+                        <td class="eventTablecell">Datum:</td>
+                        <td class="eventTablecell2" id="changeDate">${desavanje.vreme}</td>
+                    </tr>
+                <tr>
+                        <td class="eventTablecell">Mesto:</td>
+                        <td class="eventTablecell2" id="changePlace">${desavanje.mesto}</td>
+                    </tr>
+                </table>
+            </div>
+            `
+        }
+    });
+    container.innerHTML = mojaDesavanja;
 }
 
 async function glavnaStranicaLoad() 
@@ -127,10 +283,8 @@ async function glavnaStranicaLoad()
     else 
     {
         document.getElementById("accountButton-id").className += " hidden";
-        document.getElementById("newEventButton").className += " hidden";
-        document.getElementById("eventCreation-id").className += " hidden";
+        if(document.location.href == "index.html") document.getElementById("newEventButton").className += " hidden";
     }
-    console.log(1);
 }
 
 async function registracija() 
@@ -245,4 +399,10 @@ function prikaziError2(poruka)
 {
     document.getElementById("errorMessage2").innerHTML = poruka;
     document.getElementById("errorMessage2").style.display = "block";
+}
+
+function prikaziError3(poruka) 
+{
+    document.getElementById("errorMessage").innerHTML = poruka;
+    document.getElementById("errorMessage").style.display = "block";
 }

@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="css/accountPage.css">
     <link rel="stylesheet" href="css/loginregister.css">
 </head>
-<body onload="glavnaStranicaLoad()">
+<body onload="eventStranicaLoad()">
     <!--Navigation-->
 
     <nav class="nav-a">
@@ -44,7 +44,7 @@
 
     <section class="full-control" id="full-control-hide">
         <div class="accountCardContainer">
-            <h1>Naziv dogadjaja</h1>
+            <h1 id="changeNaziv">Naziv dogadjaja</h1>
 
             <div class="eventCardContainer">
                 <table>
@@ -56,18 +56,13 @@
                         <td class="eventTablecell">Mesto:</td>
                         <td class="eventTablecell2" id="changePlace">Mesto nije pronadjeno.</td>
                     </tr>
-                    <tr>
-                        <!--Ako ostane vremena countdown do momenta kada se dogadja event-->
-                        <td class="eventTablecell">Vremena preostalo:</td>
-                        <td class="eventTablecell2" id="changePlace">0d 0s 0m 0s</td>
-                    </tr>
                 </table>
             </div>
             <label>Opis:</label>
             <div class="eventCardContainer">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt illum inventore hic magnam aspernatur repudiandae assumenda nemo sapiente iste. Repellat fugiat amet nisi, nemo pariatur praesentium facilis quisquam in. At ullam, placeat molestias, facilis culpa id hic, odio nemo eius dolore veritatis earum. Eaque sapiente exercitationem, odio fuga corporis omnis.</p>
+                <p id="changeOpis">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt illum inventore hic magnam aspernatur repudiandae assumenda nemo sapiente iste. Repellat fugiat amet nisi, nemo pariatur praesentium facilis quisquam in. At ullam, placeat molestias, facilis culpa id hic, odio nemo eius dolore veritatis earum. Eaque sapiente exercitationem, odio fuga corporis omnis.</p>
             </div>
-            <button class="submit-button" id="deleteButton">Obriši dogadjaj</button>
+            <button class="submit-button" id="deleteButton" onclick="obrisiDesavanje()">Obriši dogadjaj</button>
         </div>
     </section>
 

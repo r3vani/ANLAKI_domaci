@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="css/accountPage.css">
         <link rel="stylesheet" href="css/loginregister.css">
     </head>
-    <body onload="glavnaStranicaLoad()">
+    <body onload="mainStranicaLoad()">
         <!--Navigation-->
 
         <nav class="nav-a">
@@ -42,9 +42,9 @@
 
         <!--Current Events-->
         <section class="full-control">
-            <div class="accountCardContainer">
+            <div class="accountCardContainer" id="accounCardConainerID">
                 <h2>Dogadjaji:</h2>
-                <div class="eventCardContainer">
+                <div class="eventCardContainer" id="eventCardContainerID">
                     <table class="eventTable">
                         <tr>
                             <td class="eventTablecell" colspan="2" id="eventTableEventName">01234567890123456789</td>
@@ -62,7 +62,7 @@
                     </table>
                 </div>
                 <form action="./eventCreation.html">
-                    <button class="submit-button" id="newEventButton" onclick>Novi dogadjaj</button>
+                    <button class="submit-button" id="newEventButton">Novi dogadjaj</button>
                 </form>
             </div>
         </section>
